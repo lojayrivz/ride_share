@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'wingz_drive',
-    'rest_framework'
+    'rest_framework',
+    'wingz_app',
 ]
 
 MIDDLEWARE = [
