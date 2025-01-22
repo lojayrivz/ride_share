@@ -45,7 +45,7 @@ class RideSerializer(serializers.ModelSerializer):
         fields = [
             "id_ride", "status", "id_rider", "id_driver", "pickup_latitude", 
             "pickup_longitude", "dropoff_latitude", "dropoff_longitude", "pickup_time",
-            "ride_events", "todays_ride_events"
+            "todays_ride_events"
         ]
     
     def get_todays_ride_events(self, obj):
