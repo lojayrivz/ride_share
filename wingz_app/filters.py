@@ -32,7 +32,7 @@ class RideFilter(FilterSet):
 
     def filter_by_distance(self, queryset, name, value):
         """
-        Filters and sorts rides by distance to the given latitude and longitude.
+            Filters and sorts rides by distance to the given latitude and longitude.
         """
         latitude = self.data.get('latitude')
         longitude = self.data.get('longitude')
@@ -48,7 +48,7 @@ class RideFilter(FilterSet):
                     )
                 )
             except ValueError:
-                raise ValidationError("Invalid latitude or longitude.")
+                raise ValidationError('Invalid latitude or longitude.')
         return queryset
 
     def filter_sorting(self, queryset, name, value):

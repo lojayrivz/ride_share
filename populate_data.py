@@ -19,7 +19,7 @@ def create_user(username, email, password, first_name, last_name, role):
         first_name=first_name,
         last_name=last_name,
         email=email,
-        phone_number=f"+639950074{id}",
+        phone_number=f'+639950074{id}',
         role=role
     )
     return user_account
@@ -47,36 +47,36 @@ def populate_initial_data():
 
     # Create Admin User
     create_user(
-        username=f"admin{id}",
-        email=f"admin{id}@gmail.com",
-        password="thisisapassword",
-        first_name="Admin",
-        last_name="User",
-        role="admin"
+        username=f'admin{id}',
+        email=f'admin{id}@gmail.com',
+        password='thisisapassword',
+        first_name='Admin',
+        last_name='User',
+        role='admin'
     )
 
     # Create Rider and Driver Users
     rider = create_user(
-        username=f"rider{id}",
-        email=f"rider{id}@gmail.com",
-        password="thisisapassword",
-        first_name="John",
-        last_name=f"Doe{id}",
-        role="rider"
+        username=f'rider{id}',
+        email=f'rider{id}@gmail.com',
+        password='thisisapassword',
+        first_name='John',
+        last_name=f'Doe{id}',
+        role='rider'
     )
 
     driver = create_user(
-        username=f"driver{id}",
-        email=f"driver{id}@gmail.com",
-        password="thisisapassword",
-        first_name="Jane",
-        last_name=f"Smith{id}",
-        role="driver"
+        username=f'driver{id}',
+        email=f'driver{id}@gmail.com',
+        password='thisisapassword',
+        first_name='Jane',
+        last_name=f'Smith{id}',
+        role='driver'
     )
 
     # Create a Ride
     ride = create_ride(
-        status="en-route",
+        status='en-route',
         rider=rider,
         driver=driver,
         pickup_lat=12.971598,
@@ -87,8 +87,8 @@ def populate_initial_data():
     )
 
     # Create Ride Events
-    create_ride_event(ride, description="Status changed to pickup")
-    create_ride_event(ride, description="Status changed to dropoff")
+    create_ride_event(ride, description='Status changed to pickup')
+    create_ride_event(ride, description='Status changed to dropoff')
 
-    print("Sample data populated successfully.")
+    print('Sample data populated successfully.')
 

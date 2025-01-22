@@ -13,7 +13,12 @@ class UserAccountSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = UserAccount
         fields = [
-            "id_user", "first_name", "last_name", "role", "email", "phone_number"
+            'id_user',
+            'first_name',
+            'last_name',
+            'role',
+            'email',
+            'phone_number'
         ]
 
 
@@ -27,7 +32,10 @@ class RideEventSerializer(serializers.ModelSerializer):
     class Meta:
         model = RideEvent
         fields = [
-            "id_ride_event", "id_ride", "description", "created_at"
+            'id_ride_event',
+            'id_ride',
+            'description',
+            'created_at'
         ]
 
 
@@ -43,9 +51,9 @@ class RideSerializer(serializers.ModelSerializer):
     class Meta:
         model = Ride
         fields = [
-            "id_ride", "status", "id_rider", "id_driver", "pickup_latitude", 
-            "pickup_longitude", "dropoff_latitude", "dropoff_longitude", "pickup_time",
-            "todays_ride_events"
+            'id_ride', 'status', 'id_rider', 'id_driver', 'pickup_latitude', 
+            'pickup_longitude', 'dropoff_latitude', 'dropoff_longitude', 'pickup_time',
+            'todays_ride_events'
         ]
     
     def get_todays_ride_events(self, obj):
