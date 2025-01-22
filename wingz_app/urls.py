@@ -1,7 +1,12 @@
-from django.urls import path
+from django.urls import path, include
+from rest_framework.routers import DefaultRouter
+from .views import *
 
-from . import views
+router = DefaultRouter()
+router.register(r'users', UserAccountViewSet, basename='user')
+router.register(r'rides', RideViewSet, basename='ride')
+router.register(r'ride-events', RideEventViewSet, basename='ride-event')
 
 urlpatterns = [
-    path("", views.index, name="index"),
+    path('api/', include(router.urls)),
 ]
