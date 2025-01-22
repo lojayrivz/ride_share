@@ -1,10 +1,48 @@
 from django.shortcuts import render
+from rest_framework import serializers, viewsets
+from rest_framework.pagination import PageNumberPagination
+from django_filters.rest_framework import DjangoFilterBackend
 
-# Create your views here.
+from .models import *
+from .filters import *
+
+class UserAccountSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = UserAccount
+        fields = [
+            "id_user", "first_name", "last_name", "role", "email", "phone_number"
+        ]
 
 
-from django.http import HttpResponse
+class UserAccountViewSet(viewsets.ModelViewSet):
+    queryset = UserAccount.objects.all()
+    serializer_class = UserAccountSerializer
 
 
-def index(request):
-    return HttpResponse("Hello, world. You're at the wingz_app index.")
+class RideEventSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = UserAccount
+        fields = [
+            "id_ride_event", "id_ride", "description", "created_at"
+        ]
+
+
+class RideEventViewSet(viewsets.ModelViewSet):
+    queryset = RideEvent.objects.all()
+    serializer_class = RideEventSerializer
+
+
+class RideSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Ride
+        fields = [
+            "id_ride", "status", "id_rider", "id_driver", "pickup_latitude", 
+            "pickup_longitude", "dropoff_latitude", "dropoff_longitude", "pickup_time",
+            "ride_events"
+        ]
+
+
+class RideViewSet(viewsets.ModelViewSet):
+    queryset = Ride.objects.all()
+    serializer_class = RideSerializer
+
