@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from rest_framework import serializers, viewsets
 from rest_framework.pagination import PageNumberPagination
 from django_filters.rest_framework import DjangoFilterBackend
@@ -45,4 +44,7 @@ class RideSerializer(serializers.ModelSerializer):
 class RideViewSet(viewsets.ModelViewSet):
     queryset = Ride.objects.all()
     serializer_class = RideSerializer
+    pagination_class = PageNumberPagination
+    filter_backends = [DjangoFilterBackend]
+    filterset_class = RideFilter
 
