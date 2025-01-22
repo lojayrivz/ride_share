@@ -9,7 +9,7 @@ class UserAccount(models.Model):
     ]
 
     user = models.OneToOneField(
-        User, related_name="user", on_delete=models.CASCADE
+        User, related_name="user_account", on_delete=models.CASCADE
     )
     id_user = models.AutoField(primary_key=True)
     role = models.CharField(max_length=255, choices=ROLE_CHOICES, default='rider')
@@ -17,6 +17,9 @@ class UserAccount(models.Model):
     last_name = models.CharField(max_length=255)
     email = models.CharField(max_length=255)
     phone_number = models.CharField(max_length=255)
+
+    def __str__(self):
+        return f'{self.first_name}  {self.last_name}'
 
 
 class Ride(models.Model):
