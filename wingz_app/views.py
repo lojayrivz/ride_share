@@ -4,6 +4,7 @@ from django_filters.rest_framework import DjangoFilterBackend
 
 from .models import *
 from .filters import *
+from .permissions import *
 
 class UserAccountSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
@@ -15,6 +16,7 @@ class UserAccountSerializer(serializers.HyperlinkedModelSerializer):
 
 class UserAccountViewSet(viewsets.ModelViewSet):
     queryset = UserAccount.objects.all()
+    permission_classes = [IsUserRoleAdmin]
     serializer_class = UserAccountSerializer
 
 
@@ -28,6 +30,7 @@ class RideEventSerializer(serializers.HyperlinkedModelSerializer):
 
 class RideEventViewSet(viewsets.ModelViewSet):
     queryset = RideEvent.objects.all()
+    permission_classes = [IsUserRoleAdmin]
     serializer_class = RideEventSerializer
 
 
@@ -43,6 +46,7 @@ class RideSerializer(serializers.ModelSerializer):
 
 class RideViewSet(viewsets.ModelViewSet):
     queryset = Ride.objects.all()
+    permission_classes = [IsUserRoleAdmin]
     serializer_class = RideSerializer
     pagination_class = PageNumberPagination
     filter_backends = [DjangoFilterBackend]
