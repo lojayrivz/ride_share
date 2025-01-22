@@ -1,13 +1,22 @@
 from django_filters import rest_framework as filters
-from django.db.models import F, FloatField
+from django.db.models import F
 from django.db.models.functions import Sqrt, Power
+from django.core.exceptions import ValidationError
+
 from .models import Ride
 
 
 class RideFilter(filters.FilterSet):
-    latitude = filters.NumberFilter(method='filter_by_distance')
-    longitude = filters.NumberFilter(method='filter_by_distance')
+    latitude = filters.NumberFilter(
+        label='Latitude',
+        method='filter_by_distance'
+    )
+    longitude = filters.NumberFilter(
+        label='Longitude',
+        method='filter_by_distance'
+    )
     sort_by = filters.ChoiceFilter(
+        label='Sort By',
         choices=[
             ('pickup_time', 'Pickup Time Ascending'),
             ('-pickup_time', 'Pickup Time Descending'),
