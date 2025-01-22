@@ -5,7 +5,7 @@ from .views import *
 router = DefaultRouter()
 router.register(r'users', UserAccountViewSet, basename='user')
 router.register(r'rides', RideViewSet, basename='ride')
-router.register(r'ride-events', RideViewSet, basename='ride-event')
+router.register(r'ride-events', RideEventViewSet, basename='ride-event')
 
 urlpatterns = [
     path('api/', include(router.urls)),
