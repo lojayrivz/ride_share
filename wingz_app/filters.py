@@ -1,4 +1,4 @@
-from django_filters import rest_framework as filters
+from django_filters import (FilterSet, NumberFilter, ChoiceFilter)
 from django.db.models import F
 from django.db.models.functions import Sqrt, Power
 from django.core.exceptions import ValidationError
@@ -6,16 +6,16 @@ from django.core.exceptions import ValidationError
 from .models import Ride
 
 
-class RideFilter(filters.FilterSet):
-    latitude = filters.NumberFilter(
+class RideFilter(FilterSet):
+    latitude = NumberFilter(
         label='Latitude',
         method='filter_by_distance'
     )
-    longitude = filters.NumberFilter(
+    longitude = NumberFilter(
         label='Longitude',
         method='filter_by_distance'
     )
-    sort_by = filters.ChoiceFilter(
+    sort_by = ChoiceFilter(
         label='Sort By',
         choices=[
             ('pickup_time', 'Pickup Time Ascending'),
@@ -48,7 +48,7 @@ class RideFilter(filters.FilterSet):
                     )
                 )
             except ValueError:
-                raise filters.FilterSetValidationError("Invalid latitude or longitude.")
+                raise ValidationError("Invalid latitude or longitude.")
         return queryset
 
     def filter_sorting(self, queryset, name, value):
