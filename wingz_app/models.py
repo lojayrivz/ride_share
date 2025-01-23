@@ -23,8 +23,14 @@ class UserAccount(models.Model):
 
 
 class Ride(models.Model):
+    STATUS_CHOICES = [
+        ('en-route', 'En-Route'),
+        ('pickup', 'Pick Up'),
+        ('dropoff', 'Drop Off'),
+    ]
+
     id_ride = models.AutoField(primary_key=True)
-    status = models.CharField(max_length=255)
+    status = models.CharField(max_length=255, choices=STATUS_CHOICES, default='en-route')
     id_rider = models.ForeignKey(
         UserAccount,
         related_name='rider_rides',
