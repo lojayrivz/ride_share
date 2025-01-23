@@ -1,7 +1,8 @@
-from django_filters import (FilterSet, NumberFilter, ChoiceFilter)
+from django_filters import (FilterSet, NumberFilter, ChoiceFilter, CharFilter)
 from django.db.models import F
 from django.db.models.functions import Sqrt, Power
 from django.core.exceptions import ValidationError
+from django.core.validators import validate_email
 
 from .models import Ride
 
@@ -25,6 +26,15 @@ class RideFilter(FilterSet):
         ],
         method='filter_sorting'
     )
+    status = ChoiceFilter(
+        choices=[
+            ('en-route', 'En-Route'),
+            ('pickup', 'Pick Up'),
+            ('dropoff', 'Drop Off'),
+        ],
+        method='filter_by_status'
+    )
+    id_rider__email = CharFilter(method='filter_by_email')
 
     class Meta:
         model = Ride
@@ -52,4 +62,32 @@ class RideFilter(FilterSet):
         return queryset
 
     def filter_sorting(self, queryset, name, value):
+        """
+            Sort and Ensure sort_by is one of the allowed choices.
+        """
+        valid_sorting = ['pickup_time', '-pickup_time', 'distance', '-distance']
+        if value not in valid_sorting:
+            raise ValidationError(f"Invalid sorting '{value}'. Allowed values are: {', '.join(valid_sorting)}")
+
         return queryset.order_by(value)
+
+
+    def filter_by_status(self, queryset, name, value):
+        """
+            Filter and Ensure status is one of the allowed choices.
+        """
+        valid_statuses = ['en-route', 'pickup', 'dropoff']
+        if value not in valid_statuses:
+            raise ValidationError(f"Invalid status '{value}'. Allowed values are: {', '.join(valid_statuses)}")
+        return queryset.filter(status=value)
+    
+
+    def filter_by_email(self, queryset, name, value):
+        """
+            Filter and Ensure the email is valid and filter rides by the rider's email.
+        """
+        try:
+            validate_email(value)
+        except ValidationError:
+            raise ValidationError(f"Invalid email address: {value}")
+        return queryset.filter(id_rider__email=value)
