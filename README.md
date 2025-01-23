@@ -134,3 +134,24 @@ Populate Data with an Admin, Rider, Driver, Ride and Ride Event
 - Deciding wheter to utilize teh Builtin user Model or use the instructed User Table and create own Authentication Custom Backend. And decided to Modify the User table that was instructed to UserAccount have the builtin Django User Model as its OneToOne Field to utilize Builtin Authentication
 - Need more research and analysis on how to Optimize the Queries
 - Finding difficulty in calculating the distance, just used simple distance calculation
+
+---
+
+## Raw SQL Query for Reporting
+
+Include the raw SQL query required for calculating trips longer than 1 hour by month and driver:
+
+```sql
+SELECT strftime('%Y-%m', r.pickup_time) AS month,
+       d.first_name || ' ' || d.last_name AS driver,
+       COUNT(*) AS trip_count
+FROM ride r
+JOIN ride_event e_pickup ON r.id_ride = e_pickup.id_ride AND e_pickup.description = 'Status changed to pickup'
+JOIN ride_event e_dropoff ON r.id_ride = e_dropoff.id_ride AND e_dropoff.description = 'Status changed to dropoff'
+JOIN user d ON r.id_driver = d.id_user
+WHERE (julianday(e_dropoff.created_at) - julianday(e_pickup.created_at)) * 24 > 1
+GROUP BY month, driver
+ORDER BY month, driver;
+```
+
+---
