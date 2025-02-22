@@ -30,8 +30,8 @@ This project implements a RESTful API for managing ride information using the Dj
 1. **Clone the Repository**
 
    ```bash
-   git clone https://github.com/lojayrivz/wingz.git
-   cd wingz
+   git clone https://github.com/lojayrivz/ride_share.git
+   cd ride_share
    ```
 
 2. **Create and Activate a Virtual Environment**
