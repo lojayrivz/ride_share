@@ -9,11 +9,19 @@ from django.contrib.auth.models import User
 def create_user(username, email, password, first_name, last_name, role):
     id = random.randint(0, 999)
 
-    user = User.objects.create_user(
-        username=username,
-        email=email,
-        password=password
-    )
+    if role == 'admin':
+        user = User.objects.create_superuser(
+            username=username,
+            email=email,
+            password=password
+        )
+    else:
+        user = User.objects.create_user(
+            username=username,
+            email=email,
+            password=password
+        )
+
     user_account = UserAccount.objects.create(
         user=user,
         first_name=first_name,
@@ -46,7 +54,7 @@ def populate_initial_data():
     id = random.randint(0, 99)
 
     # Create Admin User
-    create_user(
+    admin = create_user(
         username=f'admin{id}',
         email=f'admin{id}@gmail.com',
         password='thisisapassword',
@@ -91,4 +99,8 @@ def populate_initial_data():
     create_ride_event(ride, description='Status changed to dropoff')
 
     print('Sample data populated successfully.')
+    print('Admin Account Created')
+    print(f'Admin Username: {admin.user.username}')
+    print('Admin Password: thisisapassword')
+    print('In order access the Secured API, login the admin account in the /admin page')
 
