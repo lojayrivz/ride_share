@@ -2,7 +2,7 @@ import datetime
 import random
 
 from django.utils.timezone import now
-from wingz_app.models import UserAccount, Ride, RideEvent
+from ride_share_app.models import UserAccount, Ride, RideEvent
 from django.contrib.auth.models import User
 
 # Helper Functions

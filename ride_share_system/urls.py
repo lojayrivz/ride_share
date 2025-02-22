@@ -1,5 +1,5 @@
 """
-URL configuration for wingz_drive project.
+URL configuration for ride_share_system project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.2/topics/http/urls/
@@ -20,6 +20,6 @@ import debug_toolbar
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('app/', include('wingz_app.urls')),
+    path('app/', include('ride_share_App.urls')),
     path('__debug__/', include(debug_toolbar.urls)),
 ]

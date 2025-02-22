@@ -44,17 +44,17 @@ class Migration(migrations.Migration):
                 ('id_ride_event', models.AutoField(primary_key=True, serialize=False)),
                 ('description', models.CharField(max_length=255)),
                 ('created_at', models.DateTimeField(auto_now_add=True)),
-                ('id_ride', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='ride_events', to='wingz_app.ride')),
+                ('id_ride', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='ride_events', to='ride_share_App.ride')),
             ],
         ),
         migrations.AddField(
             model_name='ride',
             name='id_driver',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='driver_rides', to='wingz_app.useraccount'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='driver_rides', to='ride_share_App.useraccount'),
         ),
         migrations.AddField(
             model_name='ride',
             name='id_rider',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='rider_rides', to='wingz_app.useraccount'),
+            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='rider_rides', to='ride_share_App.useraccount'),
         ),
     ]

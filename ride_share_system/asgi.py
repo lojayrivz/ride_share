@@ -1,5 +1,5 @@
 """
-ASGI config for wingz_drive project.
+ASGI config for ride_share_system project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.asgi import get_asgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'wingz_drive.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ride_share_system.settings')
 
 application = get_asgi_application()

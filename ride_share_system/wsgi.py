@@ -1,5 +1,5 @@
 """
-WSGI config for wingz_drive project.
+WSGI config for ride_share_system project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -11,6 +11,6 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'wingz_drive.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ride_share_system.settings')
 
 application = get_wsgi_application()
