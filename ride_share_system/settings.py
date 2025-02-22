@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'ride_share_system',
     'rest_framework',
-    'ride_share_App',
+    'ride_share_app',
     'django_filters',
     'debug_toolbar'
 ]
